@@ -4,6 +4,7 @@
 
 - **Deposited funds can get stocked in the contract if the mintDsc reverts :** If the health factor of a user reverts the alredy deposited funds in the contract will be stacked since thier is no methode to refund the user.
 
+```solidity
 function mintDsc(uint256 amountDscToMint) public moreThanZero(amountDscToMint) nonReentrant {
         s_DSCMinted[msg.sender] += amountDscToMint;
         // if they minted too much ($150 DSC, $100 ETH)
