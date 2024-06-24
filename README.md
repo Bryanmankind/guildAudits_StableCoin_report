@@ -34,11 +34,3 @@ The purpose of this repository is to showcase my auditing skills and provide a c
 ## Contributing
 
 If you have any suggestions or improvements, feel free to create a pull request or open an issue.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-This README provides an overview of the practice audit report contained in this repository and offers a brief explanation of the key concepts related to blockchain technology, Bitcoin, and cryptocurrency.
