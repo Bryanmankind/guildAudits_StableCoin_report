@@ -1,11 +1,10 @@
 ## Findings 
 
 ## [M - 1] - **Precission Loss in _calculateHealthFact Method :**
-**---------------------------------------------------------------------**
 
 ## Severity.
-    **Impact :** Medium,  sequence can lead to precision loss due to integer division truncation.
-    **Likelihood: **Medium, loss allways happen when calculating the health factor of users. 
+Impact : Medium,  sequence can lead to precision loss due to integer division truncation.
+Likelihood: Medium, loss allways happen when calculating the health factor of users. 
 
 ## Description
 The _calculateHealthFactor function in the given code calculates the health factor by adjusting the collateral value for the liquidation threshold and then dividing by the total DSC minted. The current implementation performs multiplication by 1e18 in the return statement, after the division operation. This sequence can lead to precision loss due to integer division truncation.
