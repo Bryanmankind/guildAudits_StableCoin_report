@@ -67,32 +67,26 @@ function _calculateHealthFactor(uint256 totalDscMinted, uint256 collateralValueI
 }
 ```
 
-## [C - 0] - **Title :**
-[H - 0] - Title
-[M - 0] - Title
-[L - 0] - Title
+## [M - 2] -** Stale period of 3 hours is too large for Ethereum :*
 
 ## Severity.
-Impact 
-Likelihood 
+Impact: Medium, the protocol can consume stale price data.
+Likelihood: whenever price data is needed. 
 
 ## Description
-	poc
+uint256 private constant TIMEOUT = 3 hours; // 3 * 60 * 60 = 10800 seconds
+https://github.com/Cyfrin/2023-07-foundry-defi-stablecoin/blob/8db4820ee67210c6c41b7dbe6372c05a652ee73c/src/libraries/OracleLib.sol#L30
+A timeout value of 3 hours is too long, especially in volatile markets where price updates need to be more frequent to maintain accurate pricing and ensure the stability of the protocol. If the data becomes stale within this period, the protocol could operate on outdated prices, leading to potential miscalculations and economic losses.
+
+Given that on Ethereum, the oracle updates the price data approximately every hour [https://data.chain.link/feeds/ethereum/mainnet/eth-usd], the current timeout period of 3 hours may be excessively long. This can lead to scenarios where the protocol operates on outdated prices, increasing the risk of inaccuracies and potential financial discrepancies.
+
+## Tools Used 
+Manual Review
 
 ## Recommendation 
+Adjust the timeout value to be closer to the oracle's update frequency. Since the Chainlink oracle updates approximately every hour, a timeout value of 1 hour (3600 seconds) would be more appropriate.
 
 
 - **Method mintDsc does not emite tokens :** The function call does not emit the tokens minted to the user, this is important to show the amount of tokens minted.  
 
-- **Deposited Funds May Become Stuck if mintDsc Reverts :** If the mintDsc function reverts due to the user's health factor, the funds already deposited in the contract will remain stuck. This issue arises because there is no method in place to refund the user in such cases.
 
-```solidity
-function mintDsc(uint256 amountDscToMint) public moreThanZero(amountDscToMint) nonReentrant {
-        s_DSCMinted[msg.sender] += amountDscToMint;
-        // if they minted too much ($150 DSC, $100 ETH)
-        _revertIfHealthFactorIsBroken(msg.sender);
-        bool minted = i_dsc.mint(msg.sender, amountDscToMint);
-        if (!minted) {
-            revert DSCEngine__MintFailed();
-        }
-    }
