@@ -67,8 +67,7 @@ function _calculateHealthFactor(uint256 totalDscMinted, uint256 collateralValueI
 }
 ```
 
-## [M - 2] -** Stale period of 3 hours is too large for Ethereum :*
-
+## [M - 2] -*Stale period of 3 hours is too large for Ethereum**
 ## Severity.
 Impact: Medium, the protocol can consume stale price data.
 Likelihood: whenever price data is needed. 
