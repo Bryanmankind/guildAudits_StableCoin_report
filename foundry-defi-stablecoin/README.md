@@ -77,7 +77,7 @@ uint256 private constant TIMEOUT = 3 hours; // 3 * 60 * 60 = 10800 seconds
 https://github.com/Cyfrin/2023-07-foundry-defi-stablecoin/blob/8db4820ee67210c6c41b7dbe6372c05a652ee73c/src/libraries/OracleLib.sol#L30
 A timeout value of 3 hours is too long, especially in volatile markets where price updates need to be more frequent to maintain accurate pricing and ensure the stability of the protocol. If the data becomes stale within this period, the protocol could operate on outdated prices, leading to potential miscalculations and economic losses.
 
-Given that on Ethereum, the oracle updates the price data approximately every hour [https://data.chain.link/feeds/ethereum/mainnet/eth-usd], the current timeout period of 3 hours may be excessively long. This can lead to scenarios where the protocol operates on outdated prices, increasing the risk of inaccuracies and potential financial discrepancies.
+Given that on Ethereum, the oracle updates the price data approximately [every hour](https://data.chain.link/feeds/ethereum/mainnet/eth-usd), the current timeout period of 3 hours may be excessively long. This can lead to scenarios where the protocol operates on outdated prices, increasing the risk of inaccuracies and potential financial discrepancies.
 
 ## Tools Used 
 Manual Review
