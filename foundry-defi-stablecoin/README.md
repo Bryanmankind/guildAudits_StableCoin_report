@@ -9,6 +9,9 @@ Likelihood: Medium, loss allways happen when calculating the health factor of us
 ## Description
 The _calculateHealthFactor function in the given code calculates the health factor by adjusting the collateral value for the liquidation threshold and then dividing by the total DSC minted. The current implementation performs multiplication by 1e18 in the return statement, after the division operation. This sequence can lead to precision loss due to integer division truncation.
 
+https://github.com/Cyfrin/2023-07-foundry-defi-stablecoin/blob/8db4820ee67210c6c41b7dbe6372c05a652ee73c/src/DSCEngine.sol#L324
+
+
 ```solidity
 function _calculateHealthFactor(uint256 totalDscMinted, uint256 collateralValueInUsd)
     internal
